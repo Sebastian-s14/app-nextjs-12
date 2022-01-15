@@ -7,7 +7,13 @@ const Tasks = () => {
 export default Tasks
 
 const getLayout = (page: React.ReactElement) => {
-    return <Layout title="Tasks Page">{page}</Layout>
+    return (
+        <Layout
+            title="Tasks Page"
+            metaData={{ name: 'description', content: 'Tasks Page with Next.JS' }}>
+            {page}
+        </Layout>
+    )
 }
 
 Tasks.getLayout = getLayout
