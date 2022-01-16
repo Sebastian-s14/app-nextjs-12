@@ -18,6 +18,10 @@ const links: ILink[] = [
         name: 'Tasks',
         path: '/tasks',
     },
+    {
+        name: 'Characters',
+        path: '/characters',
+    },
 ]
 
 export const Navbar = () => {
