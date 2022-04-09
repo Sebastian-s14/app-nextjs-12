@@ -1,19 +1,30 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { NextPage } from 'next'
+import { ApolloProvider } from '@apollo/client'
 
-type NextPageWithLayout = NextPage & {
-    getLayout?: (page: React.ReactElement) => React.ReactNode
-}
+import client from '../graphql-client/apollo-client'
+// import type { NextPage } from 'next/types'
 
-type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout
-}
+// type NextPageWithLayout = NextPage & {
+//     getLayout?: (page: React.ReactElement) => React.ReactNode
+// }
 
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-    const getLayout = Component.getLayout ?? ((page) => page)
-    // return <Component {...pageProps} />
-    return getLayout(<Component {...pageProps} />)
+// type AppPropsWithLayout = AppProps & {
+//     Component: NextPageWithLayout
+// }
+
+// function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+//     const getLayout = Component.getLayout ?? ((page) => page)
+//     // return <Component {...pageProps} />
+//     return getLayout(<Component {...pageProps} />)
+// }
+
+function MyApp({ Component, pageProps }: AppProps) {
+    return (
+        <ApolloProvider client={client}>
+            <Component {...pageProps} />
+        </ApolloProvider>
+    )
 }
 
 export default MyApp
